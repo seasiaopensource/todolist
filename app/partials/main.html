@@ -1,0 +1,45 @@
+    <div id="todoapp">
+        <div class="title">
+            <h1>
+                Todos
+            </h1>
+        </div>
+        <div class="content">
+            <div id="todo-form">
+            </div>
+            <form id="todo-form" ng:submit="addRow()">
+                <input id="new-todo" name="newRow" placeholder="What needs to be done?" type="text">
+                <span class="ui-tooltip-top" ng:show="showHitEnterHint">
+                    Press Enter to save this row
+                </span>
+            </form>
+            <div id="todos">
+			 <input class="check" type="checkbox" name="selectAll" ng:click="checkAll(this);"/>Select All
+                <ul id="todo-list">
+                  <li class="todo" ng:class="'editing-' + todo.editing + ' done-' + todo.done" ng:repeat="todo in todos">
+                    <div class="display">
+					
+					
+                      <input class="check" type="checkbox" name="todo.done" / >
+                      <div ng:click="editRow(todo)" class="todo-content"> {{ todo.content }} </div>
+                      <span class="todo-destroy" ng:click="removeRow(todo)"></span>
+                   </div>
+                  <div class="edit">
+                    <form ng:submit="finishEditing(todo)">
+                        <input class="todo-input" my:focus="todo.editing" my:blur="finishEditing(todo)" name="todo.content" type="text">
+						
+                    </form>
+                  </div>
+                  </li>
+                </ul>
+            </div>
+            <div id="todo-stats">
+              <span class="todo-clear" ng:show="hasFinishedRows()">
+                  <a ng:click="clearCompletedRows()">
+                  Clear <span class="number-done">{{ finishedRows() }}</span>
+                  completed <span class="word-done">item</span>
+                  </a>
+              </span>
+        </div>
+        </div>
+    </div>
